@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-//@RestController
-@Controller
-//@RequestMapping(path = "/")
+@RestController
+//@Controller
+@RequestMapping(path = "/")
 public class WeatherController {
 
     Logger logger = LoggerFactory.getLogger(WeatherController.class);
@@ -26,15 +26,15 @@ public class WeatherController {
     @Autowired
     WeatherService weatherService;
 
-/*
-//    @GetMapping(path={"/", "/weather"}, produces = "application/json")
-@RequestMapping(path = "/message", method = RequestMethod.GET)
-    public String getWeatherData(Model model) {
+
+    @GetMapping(path={"/", "/weather"}, produces = "application/json")
+//@RequestMapping(path = "/message", method = RequestMethod.GET)
+    public List<Weather> getWeatherData(Model model) {
         List<Weather> allCitiesWeather = weatherService.getWeatherRecords();
 //        model.addAttribute("message", "Hi");
-        model.addAttribute("weathers",allCitiesWeather);
-        return "Message";
-    } */
+//        model.addAttribute("weathers",allCitiesWeather);
+        return allCitiesWeather;
+    }
 
     @RequestMapping(value = "/message")
     public String message() {
