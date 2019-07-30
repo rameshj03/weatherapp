@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.List;
 
-@RestController
-//@Controller
+//@RestController
+@Controller
 @RequestMapping(path = "/")
 public class WeatherController {
 
@@ -26,20 +27,22 @@ public class WeatherController {
     @Autowired
     WeatherService weatherService;
 
+    private List<String> tasks = Arrays.asList("a", "b", "c", "d", "e", "f", "g");
 
-    @GetMapping(path={"/", "/weather"}, produces = "application/json")
+    @GetMapping(path={"/", "/weather"})
 //@RequestMapping(path = "/message", method = RequestMethod.GET)
-    public List<Weather> getWeatherData(Model model) {
+    public String getWeatherData(Model model) {
         List<Weather> allCitiesWeather = weatherService.getWeatherRecords();
-//        model.addAttribute("message", "Hi");
-//        model.addAttribute("weathers",allCitiesWeather);
-        return allCitiesWeather;
+        model.addAttribute("message", "Hi");
+        model.addAttribute("tasks", tasks);
+        model.addAttribute("weathers",allCitiesWeather);
+        return "welcome";
     }
 
-    @RequestMapping(value = "/message")
-    public String message() {
-//        model.addAttribute("messages", "Hi");
-        return "message";
-    }
+  /*  @GetMapping( "/weather")
+    public String message(Model model) {
+        model.addAttribute("messages", "Hi");
+        return "welcome";
+    } */
 
 }
