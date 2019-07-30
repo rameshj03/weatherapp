@@ -9,7 +9,6 @@ public class City {
 
     private String desc;
 
-
     private  String longt;
 
     private String lat;
